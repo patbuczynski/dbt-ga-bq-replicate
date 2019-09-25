@@ -1,0 +1,24 @@
+name: 'ga_replicate'
+profile: 'default'
+version: '1.0'
+
+# IMPORTANT: please define your BQ Google Analytics table here using standard SQL conventions # and with _* suffix instead of the date. 
+# You can override the rangeStart and rangeEnd variables here or when running the model (--# vars - https://docs.getdbt.com/v0.12/docs/using-variables). 
+
+models: 
+      vars:
+        rangeStart: '20190701'
+        rangeEnd: '20190701'
+        tableName: '`your_ga_table_with_*`'
+
+source-paths: ["models"]
+analysis-paths: ["analysis"] 
+test-paths: ["tests"]
+data-paths: ["data"]
+macro-paths: ["macros"]
+
+target-path: "target"  # directory which will store compiled SQL files
+clean-targets:         # directories to be removed by `dbt clean`
+    - "target"
+    - "dbt_modules"
+
